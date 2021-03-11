@@ -1,30 +1,127 @@
 # espanso configuration file
+# yearluk
+# 2020-05-20
 
-# This is the default configuration file, change it as you like it
-# You can refer to the official documentation:
-# https://espanso.org/docs/
+# ### CONFIG ###
+# Linux: $XDG_CONFIG_HOME/espanso (e.g. /home/user/.config/espanso)
+# macOS: $HOME/Library/Preferences/espanso (e.g. /Users/user/Library/Preferences/espanso)
 
 # Matches are the substitution rules, when you type the "trigger" string
 # it gets replaced by the "replace" string.
 matches:
   # Simple text replacement
-  - trigger: ":espanso"
-    replace: "Hi there!"
+  - trigger: ":br"
+    replace: "Best regards,\n\nStephen\nm. +44 7944.683.642\ne. stephen@yearl.us"
 
-  # Dates
-  - trigger: ":date"
-    replace: "{{mydate}}"
+# common foreign words and phrases
+  # FR
+  - trigger: "cause celebre"
+    replace: "cause célèbre"
+
+  - trigger: "papier mache"
+    replace: "papier-mâché"
+
+  - trigger: "aioli"
+    replace: "aïoli"
+
+  - trigger: "naive"
+    replace: "naïve"
+
+  - trigger: "pate"
+    replace: "Pâté"
+
+  - trigger: "en croute"
+    replace: "en croûte"
+
+  - trigger: "je ne sais quois"
+    replace: "je ne sais quoi"
+
+  # DE
+  - trigger: "doppelganger"
+    replace: "doppelgänger"
+
+# fun and whacky and memes
+  - trigger: ":nice "
+    replace: "𝓷𝓲𝓬𝓮 ☜(ﾟヮﾟ☜)"
+
+  - trigger: ":shrug"
+    replace: "¯\_(ツ)_/¯"
+
+  - trigger: ":heckfire"
+    replace: "🔥🔥🔥 $|$ 🔥🔥🔥"
+
+# techy expansions
+  - trigger: ":alx"
+    replace: "𝑥"
+
+  - trigger: ":el"
+    replace: "emacs-lisp"
+
+# Get ISO date
+  - trigger: ":isod"
+    replace: "{{isodate}}"
     vars:
-      - name: mydate
+      - name: isodate
         type: date
         params:
-          format: "%m/%d/%Y"
+          format: "%Y-%m-%d"
 
-  # Shell commands
-  - trigger: ":shell"
+# Get ISO date-time
+  - trigger: ":isot"
+    replace: "{{isodatetime}}"
+    vars:
+      - name: isodatetime
+        type: date
+        params:
+          format: "%Y-%m-%dT%H:%M:%S"
+
+# markdown code fence
+  - trigger: ":mcf"
+    replace: "```\n$|$\n```"
+
+# orgmode code block
+  - trigger: ":ocb"
+    replace: "#+NAME: name\n#+BEGIN_SRC emacs-lisp\n$|$\n#+END_SRC"
+
+# Time in 0H:0M
+  - trigger: ":time"
+    replace: "{{time}}"
+    vars:
+      - name: time
+        type: date
+        params:
+          format: "%R"
+
+  # UNIX time ... handy for unique ids
+  - trigger: ":utime"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
-          cmd: "echo Hello from your shell"
+          cmd: "date '+%s'"
+
+  # md5 hash of UNIX time for unique ids
+  - trigger: ":hashid"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "md5 -s `date '+%s'`"
+
+  # mis-spellings, typos and transpositions
+  - trigger: "teh"
+    replace: "the"
+    word: true
+    propagate_case: true
+
+  - trigger: "awy"
+    replace: "way"
+    word: true
+    propagate_case: true
+
+  - trigger: "goolge"
+    replace: "Google"
+    word: true
+    propagate_case: true

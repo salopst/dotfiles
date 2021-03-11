@@ -1,0 +1,34 @@
+# config rules for https://github.com/tfeldmann/organize
+# an app kinda like maid/hazel for automating certain file-management tasks
+# yearluk
+# 2021-02-17
+
+
+rules:
+
+  # move incomplete downloads older > 30 days into the trash
+  - folders: ~/Downloads
+    filters:
+      - extension:
+          - download
+          - crdownload
+          - part
+      - lastmodified:
+          days: 30
+          mode: older
+    actions:
+      - trash
+      
+  # move LaTeX supplementary files older > 14 days into the trash
+  - folders: ~/Documents/latex_files/**/*
+    filters:
+      - extension:
+          - out
+          - aux
+          - log
+          - synctex.gz
+      - lastmodified:
+          days: 14
+          mode: older
+    actions:
+      - trash

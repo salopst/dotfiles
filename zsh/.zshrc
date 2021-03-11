@@ -125,8 +125,8 @@ path+=(.)                       # append current directory to path (controversia
 # periodically run `antigen update` ... or add to $XDG_CONFIG_HOME/.shell_aliases.sh
 #
 # antigen use oh-my-zsh
-ANTIGEN_HOME=$XDG_CONFIG_HOME/antigen
-ANTIGEN_LOG=$ANTIGEN_HOME/antigen.log
+export ANTIGEN_HOME=$XDG_CONFIG_HOME/antigen
+export ANTIGEN_LOG=$ANTIGEN_HOME/antigen.log
 
 if [[ ! -a $ANTIGEN_HOME/antigen.zsh ]]; then
 	mkdir $ANTIGEN_HOME && cd $ANTIGEN_HOME &&
@@ -181,5 +181,4 @@ bindkey '^[[B' history-substring-search-down
 # https://starship.rs/
 # export STARSHIP_CONFIG=~/.config/starship.toml #DEFAULT
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml # for GNU stow purposes
-precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
