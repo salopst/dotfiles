@@ -1,0 +1,13 @@
+# 2021-02-15
+# yearluk@t460
+# https://github.com/ytdl-org/youtube-dl/blob/master/README.md#configuration
+# 
+# ~/.config/youtube-dl/config
+
+## aliases set elsewhere
+
+# alias youtube-dl-album='youtube-dl -x -o "%(autonumber)s - %(title)s.%(ext)s" --autonumber-size 2 --audio-format=opus'
+
+# alias dl-a='youtube-dl -x -f bestaudio --prefer-free-formats -i --output "%(title)s.%(ext)s"'
+
+# alias dl-v='youtube-dl -f bestvideo+bestaudio --prefer-free-formats -i --output "%(title)s.%(ext)s"'
