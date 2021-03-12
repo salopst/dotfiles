@@ -40,6 +40,9 @@ matches:
   - trigger: "doppelganger"
     replace: "doppelgänger"
 
+  - trigger: "schrodinger"
+    replace: "Schrödinger"
+
 # fun and whacky and memes
   - trigger: ":nice "
     replace: "𝓷𝓲𝓬𝓮 ☜(ﾟヮﾟ☜)"
