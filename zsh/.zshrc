@@ -1,6 +1,6 @@
 # t:	Config file for ZSH
 # u:	yearluk
-# d: 	2021-02-16
+# d: 	2021-03-12
 # f:	~/.zshrc
 # n:	http://zsh.sourceforge.net/Intro/intro_3.html
 #
@@ -61,7 +61,6 @@ case `uname` in
   ;;
 esac
 
-alias pip-update="for i in $(pip list -o | awk 'NR > 2 {print $1}'); do sudo pip install -U $i; done"
 
 # this kind of flummery should either be deleted or moved elsewhere.
 if [[ $DESKTOP_SESSION == "pop" ]]
@@ -81,8 +80,7 @@ if [[ $DESKTOP_SESSION == "pop" ]]
 			&& sudo apt autoremove \
 			&& sudo apt clean \
 			&& sudo gem update \
-			&& sudo npm update \
-			&& sudo pip-update"
+			&& sudo npm update"
 fi
 
 
@@ -124,12 +122,13 @@ path+=(.)                       # append current directory to path (controversia
 #
 # periodically run `antigen update` ... or add to $XDG_CONFIG_HOME/.shell_aliases.sh
 #
-# antigen use oh-my-zsh
+
+# jam this shit in .zshenv?
 export ANTIGEN_HOME=$XDG_CONFIG_HOME/antigen
 export ANTIGEN_LOG=$ANTIGEN_HOME/antigen.log
 
 if [[ ! -a $ANTIGEN_HOME/antigen.zsh ]]; then
-	mkdir $ANTIGEN_HOME && cd $ANTIGEN_HOME &&
+	mkdir -p  $ANTIGEN_HOME && cd $ANTIGEN_HOME &&
 	curl -L git.io/antigen > antigen.zsh
 
     # git clone --branch master git@github.com:zsh-users/antigen.git $ANTIGEN_HOME
@@ -139,26 +138,21 @@ fi
 source $ANTIGEN_HOME/antigen.zsh
 
 # antigen bundles <<EOBUNDLES
-#     capistrano
-#     cp
 #     emoji
 #     fzf
 #     git
 #     helm
 #     history
 #     sudo
-#     $HOME/.zsh_custom/plugins/palette
-#     $HOME/.zsh_custom/plugins/skaffold
-#     wfxr/forgit
 #     zsh-users/zsh-autosuggestions
 #     zsh-users/zsh-syntax-highlighting
 # EOBUNDLES
 
-
+antigen use oh-my-zsh
 antigen bundle debian
 antigen bundle emoji
 antigen bundle fzf
-antigen bundle git
+# antigen bundle git
 antigen bundle history
 antigen bundle node
 antigen bundle npm
