@@ -26,7 +26,7 @@ mkdir $XDG_CONFIG_HOME/.antigen
 curl -L git.io/antigen > $XDG_CONFIG_HOME/.antigen/antigen.zsh
 
 # dev
-sudo apt install automake build-essential curl file git clang \ 
+sudo apt install automake build-essential clang curl file git gnugnupg2pg2 \ 
     libclang-dev libexif-dev libimlib2-dev  virt-manager -y     
 
 sudo apt install fuse gnutls-devlibjpeg-dev libtiff-dev \ 
