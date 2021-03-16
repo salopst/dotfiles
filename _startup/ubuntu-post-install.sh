@@ -8,8 +8,9 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install alacritty bat cheese dconf-editor digikam exa fd-find \ 
     ffmpeg file flameshot flatpak fonts-powerline fonts-roboto fzf git \ 
-    glances gnome-tweaks htop inxi jq lshw mpv neofetch nmap openssh-server \ 
-    python3 python3-dev python3-pip python3-testresources ruby-dev\ 
+    glances gnome-tweaks htop inxi jq keychain lshw mpv neofetch nmap \ 
+    openssh-server python3 python3-dev python3-pip \ 
+    python3-testresources ruby-dev\ 
     python-virtualenv ripgrep \ 
     samba stow texinfo wireguard zfsutils-linux zsh -y
 
@@ -22,11 +23,12 @@ fi
 # sudo chsh -s `which zsh` `whoami` # no effect until resart
 
 # antigen. Avoid the deb to stay current
-mkdir $XDG_CONFIG_HOME/.antigen
-curl -L git.io/antigen > $XDG_CONFIG_HOME/.antigen/antigen.zsh
+mkdir $XDG_CONFIG_HOME/antigen
+curl -L git.io/antigen > $XDG_CONFIG_HOME/antigen/antigen.zsh
 
 # dev
-sudo apt install automake build-essential clang curl file git gnugnupg2pg2 \ 
+sudo apt install autoconf automake autotools-dev \ 
+    build-essential clang curl file git gnugnupg2pg2 kbd \ 
     libclang-dev libexif-dev libimlib2-dev  virt-manager -y     
 
 sudo apt install fuse gnutls-devlibjpeg-dev libtiff-dev \ 

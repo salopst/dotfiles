@@ -1,6 +1,6 @@
 # Starship prompt config
 # yearluk@t460
-# 2021-01-30
+# 2021-03-14
 # ~/.config/starship/starship.toml
 #
 # export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml # for GNU stow purposes
@@ -29,7 +29,6 @@ success_symbol = " [ζετα❯](bold fg:#B454A2)"
 use_symbol_for_status = true
 
 [directory]
-# read_only = " "
 truncation_length = 6
 truncation_symbol = "../"
 format="""\n\n [$path](bold cyan)[$read_only]($read_only_style) """
@@ -44,8 +43,8 @@ ssh_only = true
 format = """$user @ $hostname : """
 
 
- [jobs]
- disabled = true
+[jobs]
+disabled = true
 symbol = "+ "
 threshold = 4
 style =  "bold dimmed blue"
@@ -73,3 +72,8 @@ style = "bold yellow"
 [[battery.display]]  # "bold green" style when capacity is between 50% and 75%
 threshold = 75
 style = "bold green"
+
+# [git_branch]
+# symbol = " "
+# truncation_length = 4
+# truncation_symbol = ""

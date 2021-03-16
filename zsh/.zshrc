@@ -1,9 +1,8 @@
-# t:	Config file for ZSH
-# u:	yearluk
-# d: 	2021-03-12
-# f:	~/.zshrc
-# n:	http://zsh.sourceforge.net/Intro/intro_3.html
-#
+# 2021-03-15
+# yearluk
+# $HOME/.zshrc
+# 
+# http://zsh.sourceforge.net/Intro/intro_3.html
 # There are five startup files that zsh will read commands from:
 # $ZDOTDIR/.zshenv
 # $ZDOTDIR/.zprofile
@@ -27,14 +26,21 @@ DISABLE_MAGIC_FUNCTIONS=true
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-# pull in aliases.... something similar for
-source $XDG_CONFIG_HOME/.shell_aliases.sh
+# pull in global aliases
+if [ -f "$XDG_CONFIG_HOME/.shell_aliases.sh" ] ; then
+  source "$XDG_CONFIG_HOME/.shell_aliases.sh"
+fi
 
-eval "$(zoxide init zsh)"# https://github.com/ajeetdsouza/zoxide#step-3-add-zoxide-to-your-shell
 # rust
 # source $HOME/.cargo/env 	# now in .zshenv
+
+# grab the antigens
 source $XDG_CONFIG_HOME/antigen/antigen.zsh
 
+eval "$(zoxide init zsh)"# https://github.com/ajeetdsouza/zoxide#step-3-add-zoxide-to-your-shell
+
+# some purty colours for manpages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Do OS dependant stuff
 case `uname` in
@@ -80,7 +86,10 @@ if [[ $DESKTOP_SESSION == "pop" ]]
 			&& sudo apt autoremove \
 			&& sudo apt clean \
 			&& sudo gem update \
-			&& sudo npm update"
+			&& flatpak update \
+			&& antigen update \
+			&& sudo npm install -g npm"
+
 fi
 
 
@@ -123,48 +132,47 @@ path+=(.)                       # append current directory to path (controversia
 # periodically run `antigen update` ... or add to $XDG_CONFIG_HOME/.shell_aliases.sh
 #
 
-# jam this shit in .zshenv?
-export ANTIGEN_HOME=$XDG_CONFIG_HOME/antigen
-export ANTIGEN_LOG=$ANTIGEN_HOME/antigen.log
-
 if [[ ! -a $ANTIGEN_HOME/antigen.zsh ]]; then
 	mkdir -p  $ANTIGEN_HOME && cd $ANTIGEN_HOME &&
 	curl -L git.io/antigen > antigen.zsh
-
-    # git clone --branch master git@github.com:zsh-users/antigen.git $ANTIGEN_HOME
-    # # @see https://github.com/zsh-users/antigen/issues/583
-    # cd $ANTIGEN_HOME && git checkout v2.0.2 && cd -
 fi
 source $ANTIGEN_HOME/antigen.zsh
 
-# antigen bundles <<EOBUNDLES
-#     emoji
-#     fzf
-#     git
-#     helm
-#     history
-#     sudo
-#     zsh-users/zsh-autosuggestions
-#     zsh-users/zsh-syntax-highlighting
-# EOBUNDLES
+antigen bundles <<EOF_BUNDLES
+	command-not-found
+	debian
+	emoji
+	fzf
+	# git
+	history
+	node
+	npm
+	pip
+	ruby
+	z
+	zsh-users/zsh-syntax-highlighting
+	zsh-users/zsh-completions src
+	zsh-users/zsh-history-substring-search
+	zsh-users/zsh-autosuggestions
+EOF_BUNDLES
 
-antigen use oh-my-zsh
-antigen bundle debian
-antigen bundle emoji
-antigen bundle fzf
-# antigen bundle git
-antigen bundle history
-antigen bundle node
-antigen bundle npm
-antigen bundle pip
-antigen bundle ruby
+# antigen use oh-my-zsh
+# antigen bundle debian
+# antigen bundle emoji
+# antigen bundle fzf
+# # antigen bundle git
+# antigen bundle history
+# antigen bundle node
+# antigen bundle npm
+# antigen bundle pip
+# antigen bundle ruby
 
-antigen bundle command-not-found
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions src
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
-# antigen bundle z
+# antigen bundle command-not-found
+# antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle zsh-users/zsh-completions src
+# antigen bundle zsh-users/zsh-history-substring-search
+# antigen bundle zsh-users/zsh-autosuggestions
+# # antigen bundle z
 antigen apply
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
