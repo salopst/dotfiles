@@ -41,6 +41,14 @@ sudo apt install fuse gnutls-devlibjpeg-dev libtiff-dev \
 sudo apt install ifuse libimobiledevice6 libimobiledevice-utils -y
 sudo mkdir -p /media/iphone
 
+# sunflower file manager
+# sudo add-apt-repository ppa:atareao/sunflower
+# sudo apt-get update
+# sudo apt istall sunflower
+# cat /etc/apt/sources.list
+# sudo add-apt-repository ppa:atareao/sunflower
+# sudo apt-get update
+
 # sxiv: CLI imageviewer
 cd $HOME/src && \ 
 git clone https://github.com/muennich/sxiv.git  && cd sxiv \ 

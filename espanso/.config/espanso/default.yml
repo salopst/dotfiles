@@ -15,20 +15,26 @@ matches:
 
 # common foreign words and phrases
   # FR
+    - trigger: "aioli"
+    replace: "aïoli"
+    word: true
+    propagate_case: true
+
+  - trigger: "naive"
+    replace: "naïve"
+    word: true
+    propagate_case: true
+
   - trigger: "cause celebre"
     replace: "cause célèbre"
 
   - trigger: "papier mache"
     replace: "papier-mâché"
 
-  - trigger: "aioli"
-    replace: "aïoli"
-
-  - trigger: "naive"
-    replace: "naïve"
-
   - trigger: "pate"
     replace: "Pâté"
+     word: true
+    propagate_case: true
 
   - trigger: "en croute"
     replace: "en croûte"
@@ -36,12 +42,21 @@ matches:
   - trigger: "je ne sais quois"
     replace: "je ne sais quoi"
 
+  - trigger: "touche"
+    replace: "touché"
+    word: true
+    propagate_case: true
+
   # DE
   - trigger: "doppelganger"
     replace: "doppelgänger"
+    word: true
+    propagate_case: true
 
   - trigger: "schrodinger"
     replace: "Schrödinger"
+    word: true
+    propagate_case: true
 
 # fun and whacky and memes
   - trigger: ":nice "
@@ -126,5 +141,9 @@ matches:
 
   - trigger: "goolge"
     replace: "Google"
+    word: true
+
+  - trigger: "similiar"
+    replace: "similar"
     word: true
     propagate_case: true
