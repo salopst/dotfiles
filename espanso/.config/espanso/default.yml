@@ -15,8 +15,13 @@ matches:
 
 # common foreign words and phrases
   # FR
-    - trigger: "aioli"
+  - trigger: "aioli"
     replace: "aïoli"
+    word: true
+    propagate_case: true
+
+  - trigger: "creme"
+    replace: "crème"
     word: true
     propagate_case: true
 
@@ -33,7 +38,7 @@ matches:
 
   - trigger: "pate"
     replace: "Pâté"
-     word: true
+    word: true
     propagate_case: true
 
   - trigger: "en croute"
