@@ -1,0 +1,45 @@
+! -*- coding: utf-8 -*-
+!#+AUTHOR: yearluk
+!#+DATE: 2020-05-22
+!#+FILENAME: t460.maranlan:~/.config/.xmodmap
+!#+TAGS: config dotfile linux keyboard
+
+!  Default setting on special keys
+!  xmodmap -pke | grep -P '(Control|Super|Alt|Menu)'
+
+! keycode  37 = Control_L NoSymbol Control_L
+! keycode  64 = Alt_L Meta_L Alt_L Meta_L
+! keycode 105 = Control_R NoSymbol Control_R
+! keycode 108 = Alt_R Meta_R Alt_R Meta_R
+! keycode 133 = Super_L NoSymbol Super_L
+! keycode 134 = Super_R NoSymbol Super_R
+! keycode 135 = Menu NoSymbol Menu
+! keycode 147 = XF86MenuKB NoSymbol XF86MenuKB
+! keycode 204 = NoSymbol Alt_L NoSymbol Alt_L
+! keycode 206 = NoSymbol Super_L NoSymbol Super_L
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+! Remap CapsLock to Control, and Shift+CapsLock to CapsLock:
+! https://wiki.archlinux.org/index.php/Xmodmap
+
+clear lock   
+clear control
+add control = Caps_Lock Control_L Control_R
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+
+
+! Swap Ctrl and Alt keys
+http://xahlee.info/linux/linux_swap_control_and_alt_xmodmap.html
+
+!clear control
+!clear mod1
+!keycode 37 = Alt_L Meta_L
+!keycode 105 = Alt_R Meta_R
+!keycode 64 = Control_L
+!keycode 108 = Control_R
+!add control = Control_L Control_R
+!add mod1 = Alt_L Meta_L
+
+
+! EOF
