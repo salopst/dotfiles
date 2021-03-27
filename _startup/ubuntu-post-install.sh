@@ -28,7 +28,7 @@ curl -L git.io/antigen > $XDG_CONFIG_HOME/antigen/antigen.zsh
 
 # dev
 sudo apt install autoconf automake autotools-dev \ 
-    build-essential clang curl file git gnugnupg2pg2 kbd \ 
+    build-essential clang curl file git gnugnupg2pg2 gridsite-clients kbd \ 
     libclang-dev libexif-dev libimlib2-dev  virt-manager -y     
 
 sudo apt install fuse gnutls-devlibjpeg-dev libtiff-dev \ 
@@ -69,21 +69,27 @@ sudo add-apt-repository ppa:mediaelch/mediaelch-stable
 sudo apt update
 sudo apt install mediaelch -y
 
-# cargo for rust
+##### 
+# Rust
 curl https://sh.rustup.rs -sSf | sh
 #
-
-# rust replacements... https://zaiste.net/posts/shell-commands-rust/ aliases in .shell-aliases
-# & feel-goods
-# alias fd=fdfind
+# rust replacements & feel-goods... https://zaiste.net/posts/shell-commands-rust/ aliases in .shell-aliases
+# bat, exa, fdfind      # installed via apt
 # alias bat=batcat
-cargo install du-dust
-cargo install skim # and FZF alternative
+# type exa >/dev/null 2>&1 && alias ls='exa -lahGi'
+# alias fd=fdfind
+
+ # Default Crate install location is $HOME/.cargo/bin
+cargo install du-dust   # du alternative;   bin is `dust` ``
+cargo install skim      # FZF alternative;  bin is `sk`
+cargo install tealdeer  # tldr alternative; bin is `tldr`
 
 # zoxide -- fast 'cd'ing around the filesystem
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
 
-# pip apps
+
+#####
+# Pip apps (python)
 sudo pip install --user --upgrade youtube_dl
 # a CLI front-end for borgbackup
 sudo pip3 install --user emborg
@@ -107,9 +113,9 @@ sudo apt install obs-studio -y
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 
 # vorta -- based on borgbackup -- did not work, but also installs borg
-sudo add-apt-repository ppa:samuel-w1/vorta
-sudo apt-get update
-sudo apt-get install vorta
+# sudo add-apt-repository ppa:samuel-w1/vorta
+# sudo apt-get update
+# sudo apt-get install vorta
 # sudo apt remove vorta
 # sudo add-apt-repository --remove ppa:PPA_Name/ppa
 # Use the following command to see all the PPAs added in your system:
