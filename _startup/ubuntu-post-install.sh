@@ -6,10 +6,11 @@
 
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install alacritty bat cheese dconf-editor digikam exa fd-find \ 
-    ffmpeg file flameshot flatpak fonts-powerline fonts-roboto fzf git \ 
-    glances gnome-tweaks htop inxi jq keychain lshw most mpv neofetch \ 
-    nmap openssh-server python3 python3-dev python3-pip \ 
+sudo apt install alacritty bat bc cheese dconf-editor digikam dnsutils \ 
+    exa fd-find ffmpeg file flameshot flatpak fonts-powerline fonts-roboto \ 
+    fzf git glances gnome-tweaks gnome-user-share htop inxi jq keychain \ 
+    lshw most mpv neofetch nmap openssh-server \ 
+    python3 python3-dev python3-pip \ 
     python3-testresources ruby-dev\ 
     python-virtualenv ripgrep \ 
     samba stow texinfo wireguard zfsutils-linux zsh -y
