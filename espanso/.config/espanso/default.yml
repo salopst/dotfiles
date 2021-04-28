@@ -115,7 +115,7 @@ matches:
         params:
           format: "%R"
 
-  # UNIX time ... handy for unique ids
+# UNIX time ... handy for unique ids
   - trigger: ":utime"
     replace: "{{output}}"
     vars:
@@ -143,12 +143,35 @@ matches:
     replace: "way"
     word: true
     propagate_case: true
-
+  
   - trigger: "goolge"
     replace: "Google"
     word: true
+  
+  - trigger: "hoewever"
+    replace: "however"
+    word: true
+    propagate_case: true
+  
+  - trigger: "mayeb"
+    replace: "maybe"
+    word: true
+    propagate_case: true
 
   - trigger: "similiar"
     replace: "similar"
     word: true
     propagate_case: true
+
+  - triggers: ["wihch", "wchih"]
+    replace: "which"
+    word: true
+    propagate_case: true
+
+  # computery typos
+  - trigger: "/urs"
+    replace: "/usr"
+
+  - trigger: "emace"
+    replace: "Emacs"
+

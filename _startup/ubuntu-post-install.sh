@@ -6,19 +6,21 @@
 
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install alacritty bat bc cheese dconf-editor digikam dnsutils \ 
-    exa fd-find ffmpeg file flameshot flatpak fonts-powerline fonts-roboto \ 
+sudo apt install alacritty bc cheese cmus dconf-editor digikam dnsutils \ 
+    evolution ffmpeg file flameshot \ 
+    flatpak fonts-powerline fonts-roboto \ 
     fzf git glances gnome-tweaks gnome-user-share htop inxi jq keychain \ 
     lshw most mpv neofetch nmap openssh-server \ 
     python3 python3-dev python3-pip \ 
     python3-testresources ruby-dev\ 
-    python-virtualenv ripgrep \ 
-    samba stow texinfo wireguard zfsutils-linux zsh -y
+    python-virtualenv \ 
+    samba spice-vdagent stow texinfo tmux \ 
+    wireguard zfsutils-linux zsh -y
 
 if [[ ! ${SHELL} =~ zsh ]]; then 
     echo NOT ZSH; 
     sudo chsh -s `which zsh` `whoami`;  
-    else echo VERILY TIS ZSH;
+    else echo 'VERILY TIS ZSH';
     exit 0;
 fi
 # sudo chsh -s `which zsh` `whoami` # no effect until resart
@@ -29,18 +31,24 @@ curl -L git.io/antigen > $XDG_CONFIG_HOME/antigen/antigen.zsh
 
 # dev
 sudo apt install autoconf automake autotools-dev \ 
-    build-essential clang curl file git gnugnupg2pg2 gridsite-clients kbd \ 
-    libclang-dev libexif-dev libimlib2-dev  virt-manager -y     
+    build-essential clang curl exiftool file \ 
+    git gnugnupg2pg2 gridsite-clients kbd \ 
+    libclang-dev libexif-dev libimlib2-dev virt-manager -y  
 
-sudo apt install fuse gnutls-devlibjpeg-dev libtiff-dev \ 
+# virtualisation -- some diplication here ... separate into sections
+sudo apt install curl genisoimage libguestfs-tools \ 
+    libosinfo-bin libvirt-dev linux-source \ 
+    qemu-kvm virtinst virt-manager virt-viewer uuid-runtime -y
+
+sudo apt install btrfs-progs fuse gnutls-devlibjpeg-dev libtiff-dev \ 
     libssl-dev openssl libacl1-dev libacl1 \ 
-    libgif-dev libxpm-dev libgtk-3-dev  \ 
+    libgif-dev libxpm-dev libdsk-utils libgtk-3-dev  \ 
     libfuse-dev libmediainfo-dev  pkg-config \ 
     libncurses5-dev libreadline-dev libxml2-dev libxt-dev -y
 
 # for phone connectivity
 sudo apt install ifuse libimobiledevice6 libimobiledevice-utils -y
-sudo mkdir -p /media/iphone
+sudo mkdir -p /media/{iphone, macos, external}
 
 # sunflower file manager
 # sudo add-apt-repository ppa:atareao/sunflower
@@ -84,10 +92,20 @@ curl https://sh.rustup.rs -sSf | sh
 cargo install du-dust   # du alternative;   bin is `dust` ``
 cargo install skim      # FZF alternative;  bin is `sk`
 cargo install tealdeer  # tldr alternative; bin is `tldr`
-
-# zoxide -- fast 'cd'ing around the filesystem
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/ajeetdsouza/zoxide/master/install.sh | sh
-
+cargo install git-delta # file diffing.
+cargo install zellij    # a terminal workspace -- buggy as of 2021-04-28
+cargo install grex      # provide pattern... it offers a possible regex
+cargo install ytop      # purdy htop
+cargo install bat       # purdy cat
+cargo install zoxide    # fast `cd`ing around the filesystem
+cargo install procs     # procs is a modern replacement for `ps`
+cargo install hyperfine # performance monitor
+cargo install sd        # more intuitive than `sed`
+cargo install exa       # drop-in replacement for `ls`
+cargo install fd-find   # a better `find` than `find`?
+cargo install bandwhich # display current network utilization by process
+cargo install ripgrep `rg` .. a better grep?
+cargo install starship # lovely drop-in command prompt
 
 #####
 # Pip apps (python)
@@ -141,7 +159,14 @@ fi
 
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-sudo flatpak install -y --noninteractive --user org.audacityteam.Audacity org.audacityteam.Audacity.Codecs org.telegram com.bitwarden.desktop com.calibre_ebook.calibre org.clementine_player.Clementine io.github.cmus.cmus org.gnome.Evince org.freefilesync.FreeFileSync org.qownnotes.QOwnNotes org.signal.Signal com.skype.Client com.spotify.Client org.texstudio.TeXstudio com.transmissionbt.Transmission com.vscodium.codium -y
+sudo flatpak install -y --noninteractive --user \ 
+    org.audacityteam.Audacity org.audacityteam.Audacity.Codecs \ 
+    org.telegram com.bitwarden.desktop com.calibre_ebook.calibre \ 
+    org.clementine_player.Clementine io.github.cmus.cmus io.github.Hexchat \ 
+    org.gnome.Evince org.freefilesync.FreeFileSync im.pidgin.Pidgin \ 
+    org.qownnotes.QOwnNotes org.signal.Signal com.skype.Client \ 
+    com.spotify.Client org.texstudio.TeXstudio \ 
+    com.transmissionbt.Transmission com.vscodium.codium -y
 
 
 # NPM
