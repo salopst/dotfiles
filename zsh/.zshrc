@@ -1,4 +1,4 @@
-# 2021-03-15
+# 2021-04-28
 # yearluk
 # $HOME/.zshrc
 # 
@@ -28,19 +28,15 @@ LC_ALL=en_US.UTF-8
 
 # pull in global aliases
 if [ -f "$XDG_CONFIG_HOME/.shell_aliases.sh" ] ; then
+  echo "+ aliases exist"
   source "$XDG_CONFIG_HOME/.shell_aliases.sh"
 fi
-
-# rust
-# source $HOME/.cargo/env 	# now in .zshenv
 
 # grab the antigens
 source $XDG_CONFIG_HOME/antigen/antigen.zsh
 
-eval "$(zoxide init zsh)"# https://github.com/ajeetdsouza/zoxide#step-3-add-zoxide-to-your-shell
-
-# some purty colours for manpages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# https://github.com/ajeetdsouza/zoxide#step-3-add-zoxide-to-your-shell
+eval "$(zoxide init zsh)"
 
 # Do OS dependant stuff
 case `uname` in
@@ -55,10 +51,8 @@ case `uname` in
 	# Empty the Trash on all mounted volumes and the main HDD
 	# Also, clear Apple’s System Logs to improve shell startup speed
 	alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; speedup"
-	
 	# for Haskell on MacOS:
 	source $HOME/.ghcup/env
-
 	# for Groovy on MacOS:
 	export GROOVY_HOME=/usr/local/opt/groovy/libexec
   ;;
@@ -88,14 +82,22 @@ if [[ $DESKTOP_SESSION == "pop" ]]
 			&& sudo gem update \
 			&& flatpak update \
 			&& antigen update \
+			&& rustup update \
 			&& sudo npm install -g npm"
 
 fi
 
 
-# History settings
+# HISTORY SETTINGS
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
+setopt    EXTENDED_HISTORY
+setopt    HIST_IGNORE_ALL_DUPS
+setopt    HIST_IGNORE_DUPS
+setopt    HIST_IGNORE_SPACE
+setopt    HIST_NO_STORE
+setopt    HIST_REDUCE_BLANKS
+setopt    HIST_VERIFY
 SAVEHIST=10000
 setopt append_history           # allow multiple sessions to append to one history
 setopt bang_hist                # treat ! special during command expansion
@@ -109,7 +111,7 @@ setopt hist_verify              # Don't execute immediately upon history expansi
 setopt inc_append_history       # Write to history file immediately, not when shell quits
 setopt share_history            # Share history among all sessions
 
-# Tab completion
+# TAB COMELETIONS
 autoload -Uz compinit && compinit
 setopt complete_in_word         # cd /ho/sco/tm<TAB> expands to /home/scott/tmp
 setopt auto_menu                # show completion menu on succesive tab presses
@@ -137,48 +139,27 @@ if [[ ! -a $ANTIGEN_HOME/antigen.zsh ]]; then
 	curl -L git.io/antigen > antigen.zsh
 fi
 source $ANTIGEN_HOME/antigen.zsh
-
+#antigen use oh-my-zsh
 antigen bundles <<EOF_BUNDLES
 	command-not-found
-	debian
 	emoji
 	fzf
-	# git
+	# git	# DOES NOT WORK : Antigen: Failed to load plugin. compdef: unknown command or service: git-log
 	history
-	node
-	npm
-	pip
-	ruby
 	z
 	zsh-users/zsh-syntax-highlighting
 	zsh-users/zsh-completions src
 	zsh-users/zsh-history-substring-search
 	zsh-users/zsh-autosuggestions
 EOF_BUNDLES
-
-# antigen use oh-my-zsh
-# antigen bundle debian
-# antigen bundle emoji
-# antigen bundle fzf
-# # antigen bundle git
-# antigen bundle history
-# antigen bundle node
-# antigen bundle npm
-# antigen bundle pip
-# antigen bundle ruby
-
-# antigen bundle command-not-found
-# antigen bundle zsh-users/zsh-syntax-highlighting
-# antigen bundle zsh-users/zsh-completions src
-# antigen bundle zsh-users/zsh-history-substring-search
-# antigen bundle zsh-users/zsh-autosuggestions
-# # antigen bundle z
 antigen apply
+
+
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 
-##### starship prompt #####
+##### STARSHIP PROMPT #####
 #
 # https://starship.rs/
 # export STARSHIP_CONFIG=~/.config/starship.toml #DEFAULT
