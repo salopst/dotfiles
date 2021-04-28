@@ -14,7 +14,7 @@ sudo apt install alacritty bc cheese cmus dconf-editor digikam dnsutils \
     python3 python3-dev python3-pip \ 
     python3-testresources ruby-dev\ 
     python-virtualenv \ 
-    samba spice-vdagent stow texinfo tmux \ 
+    samba spice-vdagent stow texinfo tmux \     
     wireguard zfsutils-linux zsh -y
 
 if [[ ! ${SHELL} =~ zsh ]]; then 
