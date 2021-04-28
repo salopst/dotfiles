@@ -70,6 +70,10 @@ matches:
   - trigger: ":shrug"
     replace: "¯\_(ツ)_/¯"
 
+  ### DON"T FORGET TO ESCAPE \\ ###
+  - trigger: ":monster"
+    replace: "¯\_༼ ಥ ‿ ಥ ༽_/¯"
+
   - trigger: ":heckfire"
     replace: "🔥🔥🔥 $|$ 🔥🔥🔥"
 
