@@ -142,11 +142,9 @@ source $ANTIGEN_HOME/antigen.zsh
 #antigen use oh-my-zsh
 antigen bundles <<EOF_BUNDLES
 	command-not-found
-	emoji
 	fzf
 	# git	# DOES NOT WORK : Antigen: Failed to load plugin. compdef: unknown command or service: git-log
-	history
-	z
+	z		# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 	zsh-users/zsh-syntax-highlighting
 	zsh-users/zsh-completions src
 	zsh-users/zsh-history-substring-search

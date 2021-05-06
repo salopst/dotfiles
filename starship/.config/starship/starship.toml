@@ -21,8 +21,12 @@ add_newline = false
 [package]
 disabled = true
 
+#[env_var]
+#variable = "GREEK_PROMPT"
+#default = "λ❯"
+
 [character]
-symbol = " [ζετα❯](bold fg:#B454A2)"
+symbol = " [ζετα=❯]($GREEK_PROMPT)(bold fg:#B454A2)"
 # style = "bold fg:#B454A2"
 error_symbol = " [✗](fg:bold red)"
 success_symbol = " [ζετα❯](bold fg:#B454A2)"
@@ -31,10 +35,10 @@ use_symbol_for_status = true
 [directory]
 truncation_length = 6
 truncation_symbol = "../"
-format="""\n\n [$path](bold cyan)[$read_only]($read_only_style) """
+format = """\n\n [$path](bold cyan)[$read_only]($read_only_style) """
 
 [cmd_duration]
-min_time = 200  # time in ms until duration is displayed
+min_time = 200 # time in ms until duration is displayed
 show_milliseconds = false
 format = """ [$duration](bold yellow) """
 
@@ -47,7 +51,7 @@ format = """$user @ $hostname : """
 disabled = true
 symbol = "+ "
 threshold = 4
-style =  "bold dimmed blue"
+style = "bold dimmed blue"
 
 [memory_usage]
 format = """\n $symbol [$ram]($style) """
@@ -61,15 +65,15 @@ full_symbol = "🔋"
 charging_symbol = "⚡️"
 discharging_symbol = "💀"
 
-[[battery.display]]  # "bold red" style when capacity is between 0% and 25%
+[[battery.display]] # "bold red" style when capacity is between 0% and 25%
 threshold = 25
 style = "bold red"
 
-[[battery.display]]  # "bold yellow" style when capacity is between 25% and 50%
+[[battery.display]] # "bold yellow" style when capacity is between 25% and 50%
 threshold = 50
 style = "bold yellow"
 
-[[battery.display]]  # "bold green" style when capacity is between 50% and 75%
+[[battery.display]] # "bold green" style when capacity is between 50% and 75%
 threshold = 75
 style = "bold green"
 

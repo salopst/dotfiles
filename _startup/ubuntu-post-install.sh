@@ -9,12 +9,13 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install alacritty bc cheese cmus dconf-editor digikam dnsutils \ 
     evolution ffmpeg file flameshot \ 
     flatpak fonts-powerline fonts-roboto \ 
-    fzf git glances gnome-tweaks gnome-user-share htop inxi jq keychain \ 
+    fzf git glances gnome-tweaks gnome-user-share graphviz \ 
+    htop inxi jq keychain \ 
     lshw most mpv neofetch nmap openssh-server \ 
     python3 python3-dev python3-pip \ 
-    python3-testresources ruby-dev\ 
-    python-virtualenv \ 
-    samba spice-vdagent stow texinfo tmux \     
+    python3-testresources \ 
+    python-virtualenv qalc ruby-dev \ 
+    samba spice-vdagent stow sqlite3 texinfo tmux \     
     wireguard zfsutils-linux zsh -y
 
 if [[ ! ${SHELL} =~ zsh ]]; then 
@@ -164,9 +165,9 @@ sudo flatpak install -y --noninteractive --user \
     org.telegram com.bitwarden.desktop com.calibre_ebook.calibre \ 
     org.clementine_player.Clementine io.github.cmus.cmus io.github.Hexchat \ 
     org.gnome.Evince org.freefilesync.FreeFileSync im.pidgin.Pidgin \ 
-    org.qownnotes.QOwnNotes org.signal.Signal com.skype.Client \ 
+    io.github.Qalculate org.qownnotes.QOwnNotes org.signal.Signal com.skype.Client \ 
     com.spotify.Client org.texstudio.TeXstudio \ 
-    com.transmissionbt.Transmission com.vscodium.codium -y
+    com.transmissionbt.Transmission com.vscodium.codium us.zoom.Zoom -y
 
 
 # NPM
